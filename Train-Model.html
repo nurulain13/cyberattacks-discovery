@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Train Model</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+</style>
+</head>
+<body>
+<center>
+    <table border: 1px solid black>
+        <tr>
+            <th width="80px"><a href="/domain-reputation">Domain Reputation</a></th>
+            <th width="80px"><a href="/explore-dataset">Explore Dataset</a></th>
+            <th width="80px"><a href="/data-schema">Data Schema</a></th>
+            <th width="80px"><a href="/train-model">Train Model</a></th>
+        </tr>
+    </table>
+    <br />
+    {% if limit %}
+        <h3>Model was trained on {{limit}} benign samples and {{limit}} malicious samples</h3>
+        <h3>The model is store on {{pkl_path}}</h3>
+    {% else %}
+        <form action="/train-model", method="POST">
+            <table>
+                <tr>
+                    <td>File Name:</td>
+                    <td><input type="text" name="pkl_path"></td>
+                </tr>
+                <tr>
+                    <td>Limit:</td>
+                    <td><input type="text" name="limit"></td>
+                </tr>
+            </table>
+            <br />
+            <button>Start Train</button>
+        </form>
+    {% endif %}
+</center>
+</body>
+</html>
